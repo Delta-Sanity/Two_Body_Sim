@@ -1,0 +1,15 @@
+sim.py handles the actual simulation of a particle.
+
+The "particle" class has three attributes: mass, position, and velocity. The former is a fixed scalar and the latter two are 2d vectors that can change. Together position and velocity are referred to as the state of the particle. When a particle is created, mass, position, and velocity must be assigned. "particle.motion" uses the velocity variable of the particle to change the position of the particle. The "inv_sec" argument dictates what fraction of a second the motion is being applied across. For example, if inv_sec  = 4 and particle.vel = [1, 0], then the particle position will change by [+0.25 0] every time particle.motion is called. "particle.accel" is the same idea as particle.motion, just applied to velocity. Because acceleration requires a force external to the particle, particle.accel has an addtional argument, "acceleration".
+
+"single_particle_sim" simulates the motion of a single particle with a constant acceleration vector, returning an array.The "time" argument describes the length of time that the simulation simulates and "time_detail" describes the number of times motion is simulated per second. If "rec_all" is set to true, the output array will contain both position and velocity information, with the shape (n, 2, 2), if it is set to false, the output array will only contain position information and will have the shape (n, 2)
+
+"two_body_sim" is the same idea as single particle sim, but has two particles as an input and only simulates interactions between them. All other arguments are identical. because it is simulating two particles, it returns a list of arrays, either [(n, 2, 2), (n, 2, 2)] if rec_all is true or [(n, 2), (n, 2)] if rec_all is false.
+
+plot.py handles graph production using matplotlib.
+
+"plot_points" takes an array with shape (n, 2) and plots it. "plot_paths" takes a list of up to 10 arrays with dimension (n, 2) and plots each entry in the list in a different color.
+
+"extract_points" takes an array containing both position and velocity information and returns an array containing only position information in the right shape to plot
+
+"paths_array_to_paths_list" will be used for features that are WIP right now.
